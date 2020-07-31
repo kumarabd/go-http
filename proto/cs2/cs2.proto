@@ -1,0 +1,54 @@
+syntax = "proto3";
+   
+// protoc -I api/server/grpc/  api/server/grpc/proto/commservice.proto --go_out=plugins=grpc:api/server/grpc/proto
+   
+package bms.cs.v1;
+import "google/protobuf/struct.proto";
+  
+  
+option go_package = "bms/cs/v1";
+option csharp_namespace = "bms.cs.v1";
+  
+//Input CommRequest
+message CommRequest{
+    repeated Input value =1;
+    // User / App access token that need to be verified
+    string accessToken = 2;
+}
+ 
+message Input{
+//Unique TemplateID
+    string templateId =1;
+//could be XML/JSON/other
+    google.protobuf.Struct data =2;
+//Additional details
+    Attributes meta =3;
+}
+ 
+message Attributes{
+    string subject =1;
+    string additionaltext =2;
+}
+   
+message CommResponse{
+    repeated Details templateBody=1;
+    Error error =2;
+}
+ 
+message Details{
+    string medium=1;
+    string body =2;
+    string subject =3;
+    repeated string placeholders =4;
+}
+ 
+// Error error response as per the standard specification.
+message Error {
+    string code = 1;
+    string description = 2;
+}
+ 
+service Communication {
+//GetParsedBody will give the parsed body for templatedID sent
+  rpc GetParsedBody(CommRequest) returns (CommResponse) {}
+}

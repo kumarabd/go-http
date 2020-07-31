@@ -1,0 +1,128 @@
+// GetTemplateContent RPC method is used for getting the content of particualr templateID. Filter can be passed to get the exact values
+// GetTemplateMeta RPC method gives the main information about
+ 
+syntax = "proto3";
+ 
+ 
+package bms.cs.templateContent;
+ 
+option go_package = "bms/cs/templateContent";
+option csharp_namespace = "bms.cs.templateContent";
+ 
+// ContentRequest contains the filters to get the template data
+message ContentRequest {
+    string authToken =1;
+    string templateId =2;
+    repeated string filters=3;
+}
+ 
+// ContentResponse represents the template response
+message ContentResponse {
+    templateData data =1;
+    Error error =2;
+}
+// templateData contains information of the template data
+message templateData{
+    details details =1;
+    filters filters =2;
+}
+// details have all the information of template
+message details{
+    string name=1;
+    string body=2;
+    string medium=3;
+    string templateType=4;
+    repeated string keys=5;
+    Attributes meta =6;
+}
+message Attributes{
+    string subject =1;
+    string additionaltext =2;
+}
+message filters{
+    string actions=1;
+    string isDefault=2;
+    string transMode=3;
+    string transClassification=4;
+}
+ 
+// Error error response as per the standard specification.
+message Error {
+    string code = 1;
+    string description = 2;
+}
+ 
+// Transaction Mode for the transaction, it should be one of the enum values
+enum TransMode {
+    NONEMODE = 0;
+    PICKUP = 1;
+    HOME_DELIVERY = 2;
+    MTICKET = 3;
+    CASH_ON_DELIVERY = 4;
+    PRINT_AT_HOME = 5;
+    NO_TICKETMODE = 6;
+    MTICKET_SPLIT_PARENT = 7;
+    MTICKET_SPLIT_CHILD = 8;
+}
+ 
+enum TransClassification {
+    NONECLASSIFICATION = 0;
+    SINGLE = 1;
+    CART = 2;
+    MULTI_CATEGORY = 3;
+    SEASON_PASS = 4;
+    PARENT_CHILD = 5;
+    ADDON_ONLY = 6;
+    PRESALES = 7;
+    CORPORATE = 8;
+    USERACTIVATION = 9;
+}
+ 
+enum Medium {
+    SMS = 0;
+    EMAIL = 1;
+    WHATSAPP = 2;
+    PDF = 3;
+}
+ 
+enum CommunicationType {
+    CONFIRMATION = 0;
+    INVOICE = 1;
+    ETICKET = 2;
+    REGISTRATION = 3;
+    ACCOUNT = 4;
+}
+ 
+message TemplateRequest {
+    TransMode transMode =1;
+    TransClassification transClassification =2;
+    bool isDefault =3;
+    Medium medium =4;
+    CommunicationType communicationType =5;
+}
+ 
+// MetaRequest is for request
+message MetaRequest{
+    string authToken =1;
+    repeated TemplateRequest templateRequest=2;
+}
+ 
+message MetaResponse{
+    repeated MetaContent result =1;
+    Error error =2;
+}
+ message MetaContent{
+    bool isDefault =1;
+    string medium=2;
+    string transClassification=3;
+    string transMode=4;
+    string templateId =5;
+    repeated string keys=6;
+    string subject =7;
+    string whatsappTempID =8;
+    string communicationType =9;
+ }
+service CommunicationTemplate {
+    rpc GetTemplateContent (ContentRequest) returns (ContentResponse) {};
+    rpc GetTemplateMeta (MetaRequest) returns (MetaResponse) {};
+}
