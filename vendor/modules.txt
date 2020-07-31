@@ -37,7 +37,7 @@ github.com/klauspost/compress/gzip
 github.com/klauspost/compress/zlib
 # github.com/konsorten/go-windows-terminal-sequences v1.0.3
 github.com/konsorten/go-windows-terminal-sequences
-# github.com/kumarabd/gokit v0.1.1
+# github.com/kumarabd/gokit v0.1.3
 github.com/kumarabd/gokit/errors
 github.com/kumarabd/gokit/logger
 github.com/kumarabd/gokit/models
