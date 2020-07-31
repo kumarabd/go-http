@@ -36,6 +36,7 @@ func Start(s *Service) error {
 
 	// Init routes
 	app.Get("/health", Health)
+	app.Get("/stats", s.Stats)
 
 	// Init server
 	err := app.Listen(s.Port)

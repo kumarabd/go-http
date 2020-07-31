@@ -18,7 +18,6 @@ func main() {
 	// Initialize Logger instance
 	log := logger.New(ApplicationName)
 	log.Info("Logger Initialized")
-	// End Logger initialization
 
 	// Initialize application specific configs and dependencies
 	// App and request config
@@ -27,8 +26,7 @@ func main() {
 		log.Err("Config Init Failed", err.Error())
 		os.Exit(1)
 	}
-	log.Info("Config Initiliazed, Running config: ")
-	// End Config Initialization
+	log.Info("Config Initiliazed")
 
 	// Server Initialization
 	service := &http.Service{

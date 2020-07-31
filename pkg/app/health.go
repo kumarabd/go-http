@@ -1,4 +1,4 @@
-package health
+package app
 
 import (
 	"github.com/kumarabd/gokit/models"
@@ -9,7 +9,7 @@ func GetHealth() *models.Health {
 	version, _ := utils.Git()
 	return &models.Health{
 		Version: version,
-		Status:  "Healthy",
-		Error:   "None",
+		Status:  "healthy",
+		Error:   "none",
 	}
 }

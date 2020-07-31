@@ -5,6 +5,6 @@ const (
 	local   = "local"
 	port    = "80"
 	proxy   = "8080"
-	version = "v1.0.0"
 	debug   = "true"
+	version = "v1.0.0"
 )

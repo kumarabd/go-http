@@ -22,6 +22,6 @@ func (l LocalApp) Get(result interface{}) error {
 		"proxy":"%s",
 		"debug":"%s",
 		"version":"%s"
-	}`, appname, local, port, proxy, version)
+	}`, appname, local, port, proxy, debug, version)
 	return utils.Unmarshal(v, result)
 }
