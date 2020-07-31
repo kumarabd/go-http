@@ -4,9 +4,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/kumarabd/go-backend/api/http"
-	"github.com/kumarabd/go-backend/internal/platform/configs"
-	"github.com/kumarabd/go-backend/internal/platform/logger"
+	"github.com/kumarabd/go-http/api/http"
+	"github.com/kumarabd/go-http/internal/platform/configs"
+	"github.com/kumarabd/go-http/internal/platform/logger"
 )
 
 var (

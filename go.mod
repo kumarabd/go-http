@@ -1,4 +1,4 @@
-module github.com/kumarabd/go-backend
+module github.com/kumarabd/go-http
 
 go 1.13
 
@@ -10,5 +10,5 @@ require (
 	github.com/kumarabd/gokit v0.1.1
 	google.golang.org/genproto v0.0.0-20200731012542-8145dea6a485
 	google.golang.org/grpc v1.31.0
-	google.golang.org/protobuf v1.24.0
+	google.golang.org/protobuf v1.25.0
 )

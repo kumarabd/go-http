@@ -2,7 +2,7 @@ package http
 
 import (
 	"github.com/gofiber/fiber"
-	"github.com/kumarabd/go-backend/pkg/health"
+	"github.com/kumarabd/go-http/pkg/health"
 	"github.com/kumarabd/gokit/models"
 )
 
